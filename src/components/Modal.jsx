@@ -1,13 +1,27 @@
-import './Modal.css'
+import "./Modal.css";
 
-function Modal({text}) {
+function Modal({ text, onModalClick }) {
   return (
     <>
       <div className="modal">
         <p className="modal__title">{text}</p>
         <div className="modal__buttons">
-          <button className="btn btn__cancel">Cancel</button>
-          <button className="btn">Confirm</button>
+          <button
+            className="btn btn__cancel"
+            onClick={() => {
+              onModalClick()
+            }}
+          >
+            Cancel
+          </button>
+          <button
+            className="btn"
+            onClick={() => {
+              onModalClick()
+            }}
+          >
+            Confirm
+          </button>
         </div>
       </div>
       <div className="backdrop" />
@@ -15,4 +29,4 @@ function Modal({text}) {
   );
 }
 
-export default Modal
+export default Modal;

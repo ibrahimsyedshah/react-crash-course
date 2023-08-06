@@ -1,27 +1,29 @@
-import './App.css';
-import Todo from './components/Todo'
-import Title from './components/Title'
-import Modal from './components/Modal'
+import "./App.css";
+import Todo from "./components/Todo";
+import Title from "./components/Title";
+import Modal from "./components/Modal";
+import React, {useState, useEffect} from 'react';
+import Counter from "./components/Counter";
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
   return (
     <div>
       <Title />
-      <div className="todo__wrapper">
-        <Todo 
-        title="Finish FES"
-        paragraph="Code along with FES step by step"
-        />
-        <Todo title="Finish Interview Section" 
-        paragraph="Finish every interview question"
-        />
-        <Todo title="Land $100k job" 
-        paragraph="Apply to 100 jobs"
-        />
+      <div>
+        <input type="text" onChange={(event) => {
+          console.log(event.target.value)
+        }}/>
+        <button onClick={() => setShowModal(true)}>Add todo</button>
       </div>
-      {/* <Modal text="Are you sure?"/> */}
+      <div className="todo__wrapper">
+        <Todo onTodoDelete={onTodoDelete} title="Finish FES" />
+        <Todo onTodoDelete={onTodoDelete} title="Finish Interview Section" />
+        <Todo onTodoDelete={onTodoDelete} title="Land $100k job" />
+      </div>
+      {showModal && <Modal text="Are you sure?" onModalClick={onModalClick}/>}
     </div>
-  )
+  );
 }
 
 export default App;
